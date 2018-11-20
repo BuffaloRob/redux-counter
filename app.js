@@ -9,11 +9,17 @@ const reducer = (state, action) => {
   }
 }
 
-const incrementAction = { 
-  type: 'INCREMENT',
-  amount: 7
-};
+const createStore = (reducer) => {
+  let state = 0;
 
-console.log(reducer(0, incrementAction));
-console.log(reducer(1, incrementAction));
-console.log(reducer(5, incrementAction));
+  const getState = () => (state);
+
+  const dispatch = (action) => {
+    state = reducer(state, action);
+  };
+
+  return {
+    getState,
+    dispatch,
+  };
+}
